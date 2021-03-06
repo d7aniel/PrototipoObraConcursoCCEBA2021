@@ -52,7 +52,7 @@ function iniciar(){
     modelo.position.set(modelo.position.x+2,modelo.position.y+3,modelo.position.z);
     ilustracion.add(modelo);
     ilustracion.scale.set(15,15,15);
-    ilustracion.position.set(-1,0,0);
+    ilustracion.position.set(5,0,-3);
     ilustracion.rotation.set(-Math.PI*0.5,0,0);
     //mundo.escena.add( ilustracion );
 
@@ -65,11 +65,15 @@ function iniciar(){
     maquina.add(nucleo2);
     maquina.add(nucleo3);
     maquina.scale.set(20,20,20);
-    maquina.position.set(1,0,0);
+    maquina.position.set(5,0,-3);
     maquina.rotation.set(-Math.PI*0.5,0,0);
     //mundo.escena.add( maquina );
 
     /*var descriptor = contextoAR.crearDescriptor('descriptor/cara');
+    descriptor.add(ilustracion);*/
+    /*var descriptor = contextoAR.crearDescriptor('descriptor/maquina');
+    descriptor.add(maquina);
+    var descriptor = contextoAR.crearDescriptor('descriptor/texto');
     descriptor.add(ilustracion);*/
     var descriptor = contextoAR.crearDescriptor('descriptor/maquina');
     descriptor.add(maquina);
@@ -102,20 +106,22 @@ function crearInveractividad(){
 
     });
 
-    document.addEventListener('mousemove',function(event){
-        pmouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	    pmouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    document.addEventListener('touchmove',function(event){
+        pmouse.x = (  event.touches[0].clientX / window.innerWidth ) * 2 - 1;
+	    pmouse.y = - ( event.touches[0].clientY / window.innerHeight ) * 2 + 1;
+        material.color.setRGB(0,0,1);
     });
 
-    document.addEventListener('mousedown',function(event){
-        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    document.addEventListener('touchstart',function(event){
+        mouse.x = (  event.touches[0].clientX / window.innerWidth ) * 2 - 1;
+	    mouse.y = - ( event.touches[0].clientY / window.innerHeight ) * 2 + 1;
         rayo.setFromCamera( mouse, mundo.camara );
 	    var objetos = rayo.intersectObjects( mundo.escena.children, true );
         //var objetos = rayo.intersectObjects( modelos );  esta linea pregunta especifcamente si el rayo se choca con los elementos
         //que estan dentro de la lista de modelos
         if(objetos.length>0){
             if(objetos[0].object === nucleo1){
+                material.color.setRGB(0,1,0);
 /*                var cant = modelos.length;
                 var tono = Math.random();
                 for(var i=0;i<cant;i++){
@@ -123,19 +129,23 @@ function crearInveractividad(){
                 }*/
                 nucleo1activo = true;
             }else if(objetos[0].object === nucleo2){
+                material.color.setRGB(0,1,1);
                 //objetos[0].object.material.color.setRGB(Math.random(),Math.random(),Math.random());
                 nucleo2activo = true;
             }else if(objetos[0].object === nucleo3){
+                material.color.setRGB(1,1,0);
                 //objetos[0].object.material.color.setRGB(Math.random(),Math.random(),Math.random());
                 nucleo3activo = true;
             }
         }
+
     });
 
-    document.addEventListener('mouseup',function(event){
+    document.addEventListener('touchend',function(event){
         nucleo1activo = false;
         nucleo2activo = false;
         nucleo3activo = false;
+        material.color.setRGB(1,0,0);
     });
 }
 
@@ -176,7 +186,7 @@ function crearIlustraciones(){
 	}
 	const geoCirculo = new THREE.BufferGeometry();
 	geoCirculo.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
-    material = new THREE.LineBasicMaterial( {	color: 0xffffff,linewidth: 10 } );
+    material = new THREE.LineBasicMaterial( {	color: 0xffffff } );
     material.color.setRGB(rojo,verde,azul);
     const verticesElipse = [];
     const ini = -Math.PI*0.1;
@@ -333,7 +343,7 @@ function animar(){
             }
         }
     }
-
+/*
     if(nucleo3activo){
         let diff = mouse.y - pmouse.y;
         nucleo3.rotation.z=diff>0?nucleo3.rotation.z+0.01:diff<0?nucleo3.rotation.z-0.01:nucleo3.rotation.z;
@@ -360,7 +370,7 @@ function animar(){
         mouse.y = pmouse.y;
         material2.color.setRGB(rojo,verde,azul);
         material.color.setRGB(rojo,verde,azul);
-    }
+    }*/
 }
 
 function hacerEspiral(unaForma,geoDestino,queForma){
