@@ -52,7 +52,7 @@ function iniciar(){
     modelo.position.set(modelo.position.x+2,modelo.position.y+3,modelo.position.z);
     ilustracion.add(modelo);
     ilustracion.scale.set(15,15,15);
-    ilustracion.position.set(5,0,-3);
+    ilustracion.position.set(0,0,0);
     ilustracion.rotation.set(-Math.PI*0.5,0,0);
     //mundo.escena.add( ilustracion );
 
@@ -65,7 +65,7 @@ function iniciar(){
     maquina.add(nucleo2);
     maquina.add(nucleo3);
     maquina.scale.set(20,20,20);
-    maquina.position.set(5,0,-3);
+    maquina.position.set(0,0,0);
     maquina.rotation.set(-Math.PI*0.5,0,0);
     //mundo.escena.add( maquina );
 
