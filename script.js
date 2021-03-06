@@ -46,10 +46,10 @@ function iniciar(){
     crearIlustraciones();
     const ilustracion = new THREE.Group();
     for(let i=0;i<formas.length;i++){
-        formas[i].position.set(formas[i].position.x+2,formas[i].position.y+3,formas[i].position.z);
+        formas[i].position.set(formas[i].position.x+2,formas[i].position.y+3.5,formas[i].position.z);
         ilustracion.add(formas[i]);
     }
-    modelo.position.set(modelo.position.x+2,modelo.position.y+3,modelo.position.z);
+    modelo.position.set(modelo.position.x+2,modelo.position.y+3.5,modelo.position.z);
     ilustracion.add(modelo);
     ilustracion.scale.set(15,15,15);
     ilustracion.position.set(0,0,0);
@@ -58,9 +58,9 @@ function iniciar(){
 
     crearMaquinaria();
     const maquina = new THREE.Group();
-    nucleo1.position.set(nucleo1.position.x+3,nucleo1.position.y+3,nucleo1.position.z);
-    nucleo2.position.set(nucleo2.position.x+3,nucleo2.position.y+3,nucleo2.position.z);
-    nucleo3.position.set(nucleo3.position.x+3,nucleo3.position.y+3,nucleo3.position.z);
+    nucleo1.position.set(nucleo1.position.x+3,nucleo1.position.y+3.5,nucleo1.position.z-1);
+    nucleo2.position.set(nucleo2.position.x+3,nucleo2.position.y+3.5,nucleo2.position.z-1);
+    nucleo3.position.set(nucleo3.position.x+3,nucleo3.position.y+3.5,nucleo3.position.z-1);
     maquina.add(nucleo1);
     maquina.add(nucleo2);
     maquina.add(nucleo3);
