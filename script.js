@@ -27,6 +27,18 @@ var nucleo1activo = false;
 var nucleo2activo = false;
 var nucleo3activo = false;
 var contextoAR;
+
+var maquina;
+var ilustracion;
+var maquinaTmp = new THREE.Object3D();
+var ilustracionTmp = new THREE.Object3D();
+
+var maquinaEsVisible = false;
+var ilustracionEsVisible = false;
+
+var contadorVistaMaquina = 10;
+var contadorVistaIlustracion = 10;
+
 function iniciar(){
     mundo = new MundoAR();
     contextoAR = new ContextoAR(mundo);
@@ -44,30 +56,31 @@ function iniciar(){
     modelo.position.set(0,3.5,0);
 
     crearIlustraciones();
-    const ilustracion = new THREE.Group();
+    ilustracion = new THREE.Group();
     for(let i=0;i<formas.length;i++){
-        formas[i].position.set(formas[i].position.x+2,formas[i].position.y+3.5,formas[i].position.z);
+        formas[i].position.set(formas[i].position.x+2,formas[i].position.y+3,formas[i].position.z);
         ilustracion.add(formas[i]);
     }
-    modelo.position.set(modelo.position.x+2,modelo.position.y+3.5,modelo.position.z);
+    modelo.position.set(modelo.position.x+2,modelo.position.y+3,modelo.position.z);
     ilustracion.add(modelo);
     ilustracion.scale.set(15,15,15);
-    ilustracion.position.set(0,0,0);
-    ilustracion.rotation.set(-Math.PI*0.5,0,0);
-    //mundo.escena.add( ilustracion );
+    ilustracion.position.set(5,0,-3);
+    //ilustracion.rotation.set(-Math.PI*0.5,0,0);
+    //ilustracion.matrixAutoUpdate = false;
+    mundo.escena.add( ilustracion );
 
     crearMaquinaria();
-    const maquina = new THREE.Group();
-    nucleo1.position.set(nucleo1.position.x+3,nucleo1.position.y+3.5,nucleo1.position.z-1);
-    nucleo2.position.set(nucleo2.position.x+3,nucleo2.position.y+3.5,nucleo2.position.z-1);
-    nucleo3.position.set(nucleo3.position.x+3,nucleo3.position.y+3.5,nucleo3.position.z-1);
+    maquina = new THREE.Group();
+    nucleo1.position.set(nucleo1.position.x+3,nucleo1.position.y+3,nucleo1.position.z);
+    nucleo2.position.set(nucleo2.position.x+3,nucleo2.position.y+3,nucleo2.position.z);
+    nucleo3.position.set(nucleo3.position.x+3,nucleo3.position.y+3,nucleo3.position.z);
     maquina.add(nucleo1);
     maquina.add(nucleo2);
     maquina.add(nucleo3);
     maquina.scale.set(20,20,20);
-    maquina.position.set(0,0,0);
-    maquina.rotation.set(-Math.PI*0.5,0,0);
-    //mundo.escena.add( maquina );
+    //maquina.position.set(5,0,-3);
+    //maquina.rotation.set(-Math.PI*0.5,0,0);
+    mundo.escena.add( maquina );
 
     /*var descriptor = contextoAR.crearDescriptor('descriptor/cara');
     descriptor.add(ilustracion);*/
@@ -75,11 +88,16 @@ function iniciar(){
     descriptor.add(maquina);
     var descriptor = contextoAR.crearDescriptor('descriptor/texto');
     descriptor.add(ilustracion);*/
+    console.log(maquinaTmp);
     var descriptor = contextoAR.crearDescriptor('descriptor/maquina');
-    descriptor.add(maquina);
+    maquinaTmp.rotation.set(-Math.PI*0.5,0,0);
+    descriptor.add(maquinaTmp);
     var descriptor = contextoAR.crearDescriptor('descriptor/texto');
-    descriptor.add(ilustracion);
+    ilustracionTmp.rotation.set(-Math.PI*0.5,0,0);
+    descriptor.add(ilustracionTmp);
     crearInveractividad();
+
+
 }
 
 function crearInveractividad(){
@@ -318,8 +336,42 @@ function animar(){
     requestAnimationFrame(animar);
     materialCanvas.map.needsUpdate = true;
     contextoAR.actualizar();
-    mundo.dibujar();
 
+
+    if(ilustracionTmp.parent.visible){
+        contadorVistaIlustracion = 10;
+    }else{
+        contadorVistaIlustracion--;
+    }
+    if(contadorVistaIlustracion<=0){
+        ilustracion.visible=false;
+    }else{
+        ilustracion.visible = true;
+    }
+
+    if(maquinaTmp.parent.visible){
+        contadorVistaMaquina = 10;
+    }else{
+        contadorVistaMaquina--;
+    }
+    if(contadorVistaMaquina<=0){
+        maquina.visible=false;
+    }else{
+        maquina.visible = true;
+    }
+
+    if(ilustracionTmp.parent.visible){
+        ilustracion.position.setFromMatrixPosition(ilustracionTmp.matrixWorld);
+        ilustracion.rotation.setFromRotationMatrix(ilustracionTmp.matrixWorld);
+        ilustracion.position.add(new THREE.Vector3(5,0,-3));
+
+    }
+    if(maquinaTmp.parent.visible){
+        maquina.position.setFromMatrixPosition(maquinaTmp.matrixWorld);
+        maquina.rotation.setFromRotationMatrix(maquinaTmp.matrixWorld);
+        maquina.position.set(5,0,-3);
+
+    }
     if(estadoSiguiente!=estadoActual){
         let diff = 0;
         for(let i=0;i<formas.length;i++){
@@ -366,6 +418,8 @@ function animar(){
         material2.color.setRGB(rojo,verde,azul);
         material.color.setRGB(rojo,verde,azul);
     }
+
+    mundo.dibujar();
 }
 
 function hacerEspiral(unaForma,geoDestino,queForma){
