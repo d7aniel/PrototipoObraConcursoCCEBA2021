@@ -8,8 +8,8 @@ export class ContextoAR{
             sourceType : 'webcam',
              sourceWidth: 720,
              sourceHeight: 1280,
-            displayWidth: window.innerWidth,
-            displayHeight: window.innerHeight    
+            displayWidth: window.innerHeight,
+            displayHeight: window.innerinnerWidth    
         });
         //--- El source se inicializa en un proceso por separado
         var tmpresize = this.onResize;
