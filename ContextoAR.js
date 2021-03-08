@@ -8,8 +8,8 @@ export class ContextoAR{
             sourceType : 'webcam',
              sourceWidth: 480,
              sourceHeight: 640,
-            displayWidth: 480,
-            displayHeight: 640    
+            displayWidth: window.innerWidth,
+            displayHeight: window.innerHeight    
         });
         //--- El source se inicializa en un proceso por separado
         var tmpresize = this.onResize;
@@ -34,7 +34,9 @@ export class ContextoAR{
         //-------- AR Toolkit Context
         this.arToolkitContext = new THREEx.ArToolkitContext({
             cameraParametersUrl: THREEx.ArToolkitContext.baseURL + 'camera_para.dat',
-            detectionMode: 'mono'
+            detectionMode: 'mono',
+            canvasWidth: window.innerWidth,
+            canvasHeight: window.innerHeight
         });
         //-- inicializar
         var tmparToolkitContext = this.arToolkitContext;
