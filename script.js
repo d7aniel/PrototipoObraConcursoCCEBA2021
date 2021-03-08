@@ -369,7 +369,7 @@ function animar(){
     if(maquinaTmp.parent.visible){
         maquina.position.setFromMatrixPosition(maquinaTmp.matrixWorld);
         maquina.rotation.setFromRotationMatrix(maquinaTmp.matrixWorld);
-        maquina.position.set(5,0,-3);
+        maquina.position.add(5,0,-3);
 
     }
     if(estadoSiguiente!=estadoActual){
