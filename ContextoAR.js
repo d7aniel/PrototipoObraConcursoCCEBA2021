@@ -35,8 +35,8 @@ export class ContextoAR{
         this.arToolkitContext = new THREEx.ArToolkitContext({
             cameraParametersUrl: THREEx.ArToolkitContext.baseURL + 'camera_para.dat',
             detectionMode: 'mono',
-            canvasWidth: window.innerWidth,
-            canvasHeight: window.innerHeight
+            canvasWidth: window.innerHeight,
+            canvasHeight: window.innerWidth
         });
         //-- inicializar
         var tmparToolkitContext = this.arToolkitContext;
