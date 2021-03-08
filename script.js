@@ -363,13 +363,13 @@ function animar(){
     if(ilustracionTmp.parent.visible){
         ilustracion.position.setFromMatrixPosition(ilustracionTmp.matrixWorld);
         ilustracion.rotation.setFromRotationMatrix(ilustracionTmp.matrixWorld);
-        ilustracion.position.add(new THREE.Vector3(2.5,5,0));
+        ilustracion.position.add(new THREE.Vector3(2.5,-5,0));
 
     }
     if(maquinaTmp.parent.visible){
         maquina.position.setFromMatrixPosition(maquinaTmp.matrixWorld);
         maquina.rotation.setFromRotationMatrix(maquinaTmp.matrixWorld);
-        maquina.position.add(new THREE.Vector3(2.5,0,5));
+        maquina.position.add(new THREE.Vector3(2.5,0,-5));
 
     }
     if(estadoSiguiente!=estadoActual){
