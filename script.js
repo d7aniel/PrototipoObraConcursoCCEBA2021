@@ -163,7 +163,7 @@ function crearInveractividad(){
 }
 
 function crearMaquinaria(){
-    const geometry = new THREE.CylinderGeometry( 0.3, 0.5, 1, 32 );
+    const geometry = new THREE.CylinderGeometry( 0.3, 0.5, 0.5, 32 );
     geometry.rotateX(Math.PI*0.5);
     const geometryC = new THREE.ConeGeometry( 0.1, 0.3, 32 );
     geometryC.rotateZ(-Math.PI*0.5);
@@ -363,13 +363,13 @@ function animar(){
     if(ilustracionTmp.parent.visible){
         ilustracion.position.setFromMatrixPosition(ilustracionTmp.matrixWorld);
         ilustracion.rotation.setFromRotationMatrix(ilustracionTmp.matrixWorld);
-        ilustracion.position.add(new THREE.Vector3(2.5,-5,0));
+        ilustracion.position.add(new THREE.Vector3(2.5,-5,-7));
 
     }
     if(maquinaTmp.parent.visible){
         maquina.position.setFromMatrixPosition(maquinaTmp.matrixWorld);
         maquina.rotation.setFromRotationMatrix(maquinaTmp.matrixWorld);
-        maquina.position.add(new THREE.Vector3(2.5,0,-5));
+        maquina.position.add(new THREE.Vector3(2.5,0,-15));
 
     }
     if(estadoSiguiente!=estadoActual){
