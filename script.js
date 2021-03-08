@@ -163,7 +163,7 @@ function crearInveractividad(){
 }
 
 function crearMaquinaria(){
-    const geometry = new THREE.CylinderGeometry( 0.5, 0.2, 1, 32 );
+    const geometry = new THREE.CylinderGeometry( 0.3, 0.5, 1, 32 );
     geometry.rotateX(Math.PI*0.5);
     const geometryC = new THREE.ConeGeometry( 0.1, 0.3, 32 );
     geometryC.rotateZ(-Math.PI*0.5);
@@ -393,8 +393,8 @@ function animar(){
 
     if(nucleo3activo){
         let diff = mouse.y - pmouse.y;
-        nucleo3.rotation.z=diff>0?nucleo3.rotation.z+0.01:diff<0?nucleo3.rotation.z-0.01:nucleo3.rotation.z;
-        rojo = diff>0?rojo-0.01:diff<0?rojo+0.01:rojo;
+        nucleo3.rotation.z=diff<0?nucleo3.rotation.z+0.05:diff>0?nucleo3.rotation.z-0.05:nucleo3.rotation.z;
+        rojo = diff<0?rojo-0.03:diff>0?rojo+0.03:rojo;
         rojo = THREE.MathUtils.clamp(rojo,0,1);
         mouse.y = pmouse.y;
         material2.color.setRGB(rojo,verde,azul);
@@ -402,8 +402,8 @@ function animar(){
     }
     if(nucleo1activo){
         let diff = mouse.y - pmouse.y;
-        nucleo1.rotation.z=diff>0?nucleo1.rotation.z+0.01:diff<0?nucleo1.rotation.z-0.01:nucleo1.rotation.z;
-        verde = diff>0?verde-0.01:diff<0?verde+0.01:verde;
+        nucleo1.rotation.z=diff<0?nucleo1.rotation.z+0.05:diff>0?nucleo1.rotation.z-0.05:nucleo1.rotation.z;
+        verde = diff<0?verde-0.03:diff>0?verde+0.03:verde;
         verde = THREE.MathUtils.clamp(verde,0,1);
         mouse.y = pmouse.y;
         material2.color.setRGB(rojo,verde,azul);
@@ -411,8 +411,8 @@ function animar(){
     }
     if(nucleo2activo){
         let diff = mouse.y - pmouse.y;
-        nucleo2.rotation.z=diff>0?nucleo2.rotation.z+0.01:diff<0?nucleo2.rotation.z-0.01:nucleo2.rotation.z;
-        azul = diff>0?azul-0.01:diff<0?azul+0.01:azul;
+        nucleo2.rotation.z=diff<0?nucleo2.rotation.z+0.05:diff>0?nucleo2.rotation.z-0.05:nucleo2.rotation.z;
+        azul = diff<0?azul-0.03:diff>0?azul+0.03:azul;
         azul = THREE.MathUtils.clamp(azul,0,1);
         mouse.y = pmouse.y;
         material2.color.setRGB(rojo,verde,azul);
