@@ -6,8 +6,8 @@ export class ContextoAR{
         //------- AR Toolkit Source, es decir lo que la camara ve
         this.arToolkitSource = new THREEx.ArToolkitSource({
             sourceType : 'webcam',
-             sourceWidth: 480,
-             sourceHeight: 640,
+             sourceWidth: 640,
+             sourceHeight: 480,
             displayWidth: window.innerWidth,
             displayHeight: window.innerHeight    
         });
