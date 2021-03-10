@@ -39,6 +39,13 @@ var ilustracionEsVisible = false;
 var contadorVistaMaquina = 10;
 var contadorVistaIlustracion = 10;
 
+var posMaquinaTemp = new THREE.Vector3();
+var rotMaquinaTemp = new THREE.Vector3();
+
+
+var posIluTemp = new THREE.Vector3();
+var rotIluTemp = new THREE.Vector3();
+
 function iniciar(){
     mundo = new MundoAR();
     contextoAR = new ContextoAR(mundo);
@@ -361,16 +368,18 @@ function animar(){
     }
 
     if(ilustracionTmp.parent.visible){
-        ilustracion.position.setFromMatrixPosition(ilustracionTmp.matrixWorld);
-        ilustracion.rotation.setFromRotationMatrix(ilustracionTmp.matrixWorld);
-        ilustracion.position.add(new THREE.Vector3(2.5,-5,-7));
-
+	posIluTemp.setFromMatrixPosition(ilustracionTmp.matrixWorld);
+	posIluTemp.add(new THREE.Vector3(2.5,-5,-7));
+	rotIluTemp.setFromRotationMatrix(ilustracionTmp.matrixWorld);
+	ilustracion.position.lerp(posIluTemp,0.05);
+        ilustracion.rotation.lerp(rotIluTemp,0.05);
     }
     if(maquinaTmp.parent.visible){
-        maquina.position.setFromMatrixPosition(maquinaTmp.matrixWorld);
-        maquina.rotation.setFromRotationMatrix(maquinaTmp.matrixWorld);
-        maquina.position.add(new THREE.Vector3(2.5,0,-15));
-
+	posMaquinaTemp.setFromMatrixPosition(maquinaTmp.matrixWorld);
+	posMaquinaTemp.add(new THREE.Vector3(2.5,0,-15));
+	rotMaquinaTemp.setFromRotationMatrix(maquinaTmp.matrixWorld);
+	maquina.position.lerp(posMaquinaTemp,0.05);
+        maquina.rotation.lerp(rotMaquinaTemp,0.05);
     }
     if(estadoSiguiente!=estadoActual){
         let diff = 0;
