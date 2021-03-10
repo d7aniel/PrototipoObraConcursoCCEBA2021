@@ -379,7 +379,7 @@ function animar(){
     }
     if(maquinaTmp.parent.visible){
 	posMaquinaTemp.setFromMatrixPosition(maquinaTmp.matrixWorld);
-	posMaquinaTemp.add(new THREE.Vector3(2.5,0,-15));
+	posMaquinaTemp.add(new THREE.Vector3(2.5,-3,-15));
 	rotMaquinaTemp.setFromRotationMatrix(maquinaTmp.matrixWorld);
 	maquina.position.lerp(posMaquinaTemp,0.2);
         maquina.quaternion.slerp(rotMaquinaTemp,0.2);
