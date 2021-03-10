@@ -89,7 +89,7 @@ function iniciar(){
     var descriptor = contextoAR.crearDescriptor('descriptor/texto');
     descriptor.add(ilustracion);*/
     console.log(maquinaTmp);
-    var descriptor = contextoAR.crearDescriptor('descriptor/maquina');
+    var descriptor = contextoAR.crearDescriptor('descriptor/m');
     maquinaTmp.rotation.set(-Math.PI*0.5,0,0);
     descriptor.add(maquinaTmp);
     var descriptor = contextoAR.crearDescriptor('descriptor/texto');
