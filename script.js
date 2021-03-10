@@ -170,11 +170,11 @@ function crearInveractividad(){
 }
 
 function crearMaquinaria(){
-    const geometry = new THREE.CylinderGeometry( 0.3, 0.5, 0.5, 32 );
+    const geometry = new THREE.CylinderGeometry( 0.3*3, 0.5*3, 0.5, 32 );
     geometry.rotateX(Math.PI*0.5);
-    const geometryC = new THREE.ConeGeometry( 0.1, 0.3, 32 );
+    const geometryC = new THREE.ConeGeometry( 0.1*2, 0.3*2, 32 );
     geometryC.rotateZ(-Math.PI*0.5);
-    geometryC.translate(0.7,0,0);
+    geometryC.translate(0.7*3,0,0);
 
 
 
@@ -186,13 +186,13 @@ function crearMaquinaria(){
     nucleo2 = new THREE.Mesh( geometry, material2 );
     const cone2 = new THREE.Mesh( geometryC, material2 );
     nucleo2.add(cone2);
-    nucleo2.position.y -= 1.5;
-    nucleo2.position.x -= 1;
+    nucleo2.position.y -= 1*3;
+    nucleo2.position.x -= 1.5*3;
     nucleo3 = new THREE.Mesh( geometry, material2 );
     const cone3 = new THREE.Mesh( geometryC, material2 );
     nucleo3.add(cone3);
-    nucleo3.position.y += 1.5;
-    nucleo3.position.x -= 1;
+    nucleo3.position.y += 1*3;
+    nucleo3.position.x -= 1.5*3;
 }
 
 function crearIlustraciones(){
