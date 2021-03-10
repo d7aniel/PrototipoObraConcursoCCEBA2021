@@ -374,15 +374,15 @@ function animar(){
 	/*ilustracion.position.setFromMatrixPosition(ilustracionTmp.matrixWorld);
 	ilustracion.position.add(new THREE.Vector3(2.5,-5,-7));
 	ilustracion.rotation.setFromRotationMatrix(ilustracionTmp.matrixWorld);*/
-	ilustracion.position.lerp(posIluTemp,0.05);
-        ilustracion.quaternion.slerp(rotIluTemp,0.05);
+	ilustracion.position.lerp(posIluTemp,0.2);
+        ilustracion.quaternion.slerp(rotIluTemp,0.2);
     }
     if(maquinaTmp.parent.visible){
 	posMaquinaTemp.setFromMatrixPosition(maquinaTmp.matrixWorld);
 	posMaquinaTemp.add(new THREE.Vector3(2.5,0,-15));
 	rotMaquinaTemp.setFromRotationMatrix(maquinaTmp.matrixWorld);
-	maquina.position.lerp(posMaquinaTemp,0.05);
-        maquina.quaternion.slerp(rotMaquinaTemp,0.05);
+	maquina.position.lerp(posMaquinaTemp,0.2);
+        maquina.quaternion.slerp(rotMaquinaTemp,0.2);
     }
     if(estadoSiguiente!=estadoActual){
         let diff = 0;
