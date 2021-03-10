@@ -186,13 +186,13 @@ function crearMaquinaria(){
     nucleo2 = new THREE.Mesh( geometry, material2 );
     const cone2 = new THREE.Mesh( geometryC, material2 );
     nucleo2.add(cone2);
-    nucleo2.position.y -= 1*3;
+    nucleo2.position.y -= 0.3*3;
     nucleo2.position.x -= 1.5*3;
     nucleo3 = new THREE.Mesh( geometry, material2 );
     const cone3 = new THREE.Mesh( geometryC, material2 );
     nucleo3.add(cone3);
-    nucleo3.position.y += 1*3;
-    nucleo3.position.x -= 1.5*3;
+    nucleo3.position.y += 0.3*3;
+    nucleo3.position.x += 1.5*3;
 }
 
 function crearIlustraciones(){
